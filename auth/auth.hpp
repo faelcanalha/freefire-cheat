@@ -20,7 +20,6 @@ namespace Just {
 		class user_data {
 		public:
 			// user data
-			std::string username;
 			std::string hwid;
 			std::string expiry;
 		};

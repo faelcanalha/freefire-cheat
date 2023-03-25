@@ -64,6 +64,7 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
         FreeLibrary(dnsapi);
     }
 
+
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
     WNDCLASSEX wc = { sizeof(WNDCLASSEX), CS_CLASSDC, DefWindowProc, 0L, 0L, GetModuleHandle(NULL), NULL, NULL, NULL, NULL, "x", NULL };

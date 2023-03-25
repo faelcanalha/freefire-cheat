@@ -17,7 +17,7 @@ float loader_animation = 0.f;
 bool loader_active = true;
 
 bool particles = true;
-bool authenticed;
+bool authenticed = false;
 char id[255] = "";
 
 int tabs = 0;

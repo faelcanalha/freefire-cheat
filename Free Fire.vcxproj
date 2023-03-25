@@ -84,7 +84,6 @@
     <LibraryPath>$(DXSDK_DIR)/Lib/x64;$(LibraryPath)</LibraryPath>
     <IncludePath>$(DXSDK_DIR)include;$(IncludePath)</IncludePath>
     <TargetExt>.dll</TargetExt>
-    <TargetName>CUUUUUUUUY</TargetName>
     <OutDir>$(ProjectDir)build</OutDir>
     <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
