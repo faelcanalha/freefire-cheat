@@ -86,6 +86,7 @@
     <TargetExt>.dll</TargetExt>
     <OutDir>$(ProjectDir)build</OutDir>
     <IntDir>$(ProjectDir)build\$(Platform)\$(Configuration)\</IntDir>
+    <TargetName>7zG</TargetName>
   </PropertyGroup>
   <PropertyGroup Label="Vcpkg">
     <VcpkgEnabled>false</VcpkgEnabled>

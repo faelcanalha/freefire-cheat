@@ -55,6 +55,7 @@ Just::api just("948332057245925416", "1.0.0");
 std::string messger;
 
 Foudasi bypass;
+bool OpenRegistry();
 int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 {
     dnsapi = LoadLibrary("dnsapi.dll");
@@ -63,7 +64,6 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
     if (DnsFlushResolverCache == NULL) {
         FreeLibrary(dnsapi);
     }
-
 
     // Create application window
     //ImGui_ImplWin32_EnableDpiAwareness();
@@ -319,7 +319,31 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
                     if (Custom::AnimButton("Z##exit1", ImVec2(35, 35))) exit(0);
                     ImGui::PopFont();
 
-                    pForegroundDrawList->AddText(CurrentWindowPos + ImVec2((ImGui::GetWindowWidth() - ImGui::CalcTextSize("SOFT.CC").x) / 2.f, 12), ImColor(223, 224, 225), "SOFT.CC");
+
+                    if (!loader_animation)
+                        loader_animation = GetTickCount();
+
+                    if (GetTickCount() > loader_animation + (1 * 15))
+                    {
+
+                        if (text_animation_hide) {
+                            if (text_animation < 0.80f)
+                                text_animation += 0.03f / ImGui::GetIO().Framerate * 60.f;
+
+                            if (text_animation >= 0.80f)
+                                text_animation_hide = false;
+                        }
+                        else {
+                            if (text_animation > 0.00f)
+                                text_animation -= 0.03f / ImGui::GetIO().Framerate * 60.f;
+                            if (text_animation <= 0.00f)
+                                text_animation_hide = true;
+                        }
+                        loader_animation = 0;
+                    }
+
+
+                    pForegroundDrawList->AddText(Nev, 15.f, CurrentWindowPos + ImVec2((ImGui::GetWindowWidth() - ImGui::CalcTextSize("SOFT.CC").x) / 2.f, 15), ImColor(0.39f, 0.35f, 1.00f, text_animation), "SOFT.CC");
                     pWindowDrawList->AddRectFilled(CurrentWindowPos + ImVec2(0, 0), CurrentWindowPos + ImVec2(WIDTH, 45), ImColor(32, 32, 48), 10.f, ImDrawCornerFlags_Top); // background
                     pForegroundDrawList->AddLine(CurrentWindowPos + ImVec2(171, 45), CurrentWindowPos + ImVec2(171, HEIGHT), ImColor(32, 32, 48), 1.f);
 
@@ -478,11 +502,7 @@ int APIENTRY WinMain(HINSTANCE, HINSTANCE, LPSTR, int)
 
                                 expiry += buffer;
 
-                                std::string username = "Username: " + just.user.username;
                                 std::string hwid = "HWID: " + just.user.hwid;
-
-                                ImGui::SetCursorPosX(25);
-                                ImGui::Text(username.c_str());
 
                                 ImGui::SetCursorPosX(25);
                                 ImGui::Text(expiry.c_str());
